@@ -6,7 +6,7 @@ const Discord = require('discord.js');
 const robo = new Discord.Client();
 robo.login(botToken);
 
-password = getRandomInt(50,220);
+password = getRandomInt(1,30);
 
 robo.on('ready', ()=>{//i dont know what is this, but this its called when the bot starts
     console.log("bot started");
@@ -37,21 +37,13 @@ function encriptId(id)
 {
     //32,255
 
-    letras = ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","!","#","$","%","&","'","(",")","*","+",",","-",".","/",":",";","<","=",">","?","@","[","^","_","`","{","|","}","~"]
+    randomcharss = ["0","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","_","`","{","|","}","~","D","w","x","y","z","A","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","1","8","9","a","b","c","d","e","f","g","2","#","$","%","&","'","(",")","*","+",",","-","B","C","Y","Z","!","G","H","I","J",".","/",":",";","<","=",">","?","@","[","^","E","F","3","4","5","6","7",]
+    arr = "";
+    for (let index = 0; index < id.length; index++) {
+        var txt = id[index];
+        //console.log(txt)
+        arr+=randomcharss[parseInt(txt,10)+password]
+    }
 
-    //lol, não sei como meche com arrays em javascript
-    teste = id.replace(/0/g,"G")
-    teste2 = teste.replace(/1/g,"@")
-    teste3 = teste2.replace(/2/g,"T")
-    teste4 = teste3.replace(/3/g,"3")
-    teste5 = teste4.replace(/4/g,"u")
-    teste6 = teste5.replace(/5/g,",")
-    teste7 = teste6.replace(/6/g,"i")
-    teste8 = teste7.replace(/7/g,"e")
-    teste9 = teste8.replace(/8/g,"=")
-    teste0 = teste9.replace(/9/g,"~")
-
-    
-
-    return teste0;
+    return arr;
 }
