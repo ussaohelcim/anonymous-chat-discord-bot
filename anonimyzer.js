@@ -1,15 +1,19 @@
-botToken = ""//insert your bot token here
-toSendChannel = ""//insert the channel id used to send messages here
-toReadChannel = ""//insert the channel id used to read messages here
+botToken = "ODIwNDU0ODc5NjQ2NDQ5Njg0.YE1aJg.yhFaO_48nsB23_7jfJUZjfAmW9I"//insert your bot token here
+toSendChannel = "820455977622700083"//insert the channel id used to send messages here
+toReadChannel = "820455995788623872"//insert the cannel if used to read messages here
 
 const Discord = require('discord.js');
 const robo = new Discord.Client();
+
 robo.login(botToken);
 
 password = getRandomInt(1,30);
 
+messages = []
+
 robo.on('ready', ()=>{//i dont know what is this, but this its called when the bot starts
     console.log("bot started");
+    robo.user.setActivity("lulz pra todo lado");
 })
 robo.on('message', message =>{//i dont know what is this, but this its called when someone sends a message
 
@@ -19,12 +23,15 @@ robo.on('message', message =>{//i dont know what is this, but this its called wh
         msg = encriptId(message.author.id)+" >: ```"+ message.content+"```";
         console.log(encriptId(message.author.id))
         message.delete();//delete the message
-        robo.channels.cache.get(toReadChannel).send(msg);//send the message to the "toReadChannel"
+        //robo.channels.cache.get(toReadChannel).send(msg);//send the message to the "toReadChannel"
+        messages.unshift(msg)
     }
-
 })
 robo.on('guildMemberAdd',member =>{
     message.send("testando ",member);
+})
+robo.on('rateLimit',a =>{
+    console.log(a)
 })
 
 function getRandomInt(min, max) {
@@ -46,4 +53,13 @@ function encriptId(id)
     }
 
     return arr;
+}
+let teste = process.openStdin()
+teste.addListener('data',function(a){
+    let t = a.toString()
+    robo.channels.cache.get(toReadChannel).send(t);
+})
+if(messages.length>0)
+{
+    robo.channels.cache.get(toReadChannel).send(messages.pop);
 }
