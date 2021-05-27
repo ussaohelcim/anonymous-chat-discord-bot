@@ -1,11 +1,10 @@
-botToken = "ODIwNDU0ODc5NjQ2NDQ5Njg0.YE1aJg.yhFaO_48nsB23_7jfJUZjfAmW9I"//insert your bot token here
-toSendChannel = "820455977622700083"//insert the channel id used to send messages here
-toReadChannel = "820455995788623872"//insert the cannel if used to read messages here
+const conf = require("./config.json")
+
 
 const Discord = require('discord.js');
 const robo = new Discord.Client();
 
-robo.login(botToken);
+robo.login(conf.TOKEN);
 
 password = getRandomInt(1,30);
 
@@ -17,13 +16,13 @@ robo.on('ready', ()=>{//i dont know what is this, but this its called when the b
 })
 robo.on('message', message =>{//i dont know what is this, but this its called when someone sends a message
 
-    if(message.channel.id === toSendChannel)
+    if(message.channel.id === conf.TOSENDCHANNEL)
     {//check if the message its on "toSendChannel"
         console.log(message.author.tag," said " ,message.content);//display in the console the message author and the message
         msg = encriptId(message.author.id)+" >: ```"+ message.content+"```";
         console.log(encriptId(message.author.id))
         message.delete();//delete the message
-        //robo.channels.cache.get(toReadChannel).send(msg);//send the message to the "toReadChannel"
+        robo.channels.cache.get(conf.TOREADCHANNEL).send(msg);//send the message to the "toReadChannel"
         messages.unshift(msg)
     }
 })
@@ -57,9 +56,5 @@ function encriptId(id)
 let teste = process.openStdin()
 teste.addListener('data',function(a){
     let t = a.toString()
-    robo.channels.cache.get(toReadChannel).send(t);
+    robo.channels.cache.get(conf.TOREADCHANNEL).send(t);
 })
-if(messages.length>0)
-{
-    robo.channels.cache.get(toReadChannel).send(messages.pop);
-}

@@ -1,0 +1,5 @@
+{
+    "TOKEN":"insert your bot token here",
+    "TOSENDCHANNEL":"insert the channel id used to send messages here",
+    "TOREADCHANNEL":"insert the cannel if used to read messages here"
+}
