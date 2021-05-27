@@ -16,6 +16,12 @@ Run bot:
 ```
 node .
 ```
+## Discord server configuration
+- Create a new bot at Discord Developers Portal then put the token in *config.js*.
+- Create, or use, a text channel to bot read messages then put the channel id in *config.js*.
+    - It's recomended to use slowmode for something like 30 seconds.
+- Create, or use, a text channel to bot send messages then put these channel id in *config.js*.
+    
 
-## Know problems
-Discord's bots can make only up to 50 requests per seconds to their API
+## Known problems
+Discord's bots can make only up to 50 requests per seconds to their API, but some requests have limits like 5 requests per second.
